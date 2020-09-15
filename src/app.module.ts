@@ -8,9 +8,9 @@ import { UsersModule } from './users/users.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
-   /*  GraphQLModule.forRoot({
+    GraphQLModule.forRoot({
       autoSchemaFile: 'schema.gpl',
-    }), */
+    }),
     UsersModule,
 
   ],

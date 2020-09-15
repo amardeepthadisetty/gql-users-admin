@@ -1,0 +1,39 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type CreateUsersDTO {
+  id: Float!
+  client_id: String!
+  boolean: Boolean!
+  title: String!
+  first_name: String!
+  last_name: String!
+  email: String!
+  phone: String!
+  tier: String!
+  updated_at: String!
+  recent_viewed: String!
+  favourites: String!
+  products_saved_for_later: String!
+  city_id: String!
+  country_id: String!
+  vat_number: Boolean!
+}
+
+type Query {
+  users: [CreateUsersDTO!]!
+}
+
+type Mutation {
+  createUser(data: InputUser!): CreateUsersDTO!
+}
+
+input InputUser {
+  title: String
+  first_name: String
+  last_name: String
+  email: String!
+  password: String!
+  phone: String
+}

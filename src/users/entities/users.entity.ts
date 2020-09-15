@@ -6,63 +6,63 @@ export class UserEntity{
     id: number;
 
     @Column({ nullable: true, type:'varchar' , length:255})
-    client_id: String;
+    client_id: string;
 
     @Column({type:'bool', default:'false'})
     active:boolean;
 
     @Column({ nullable: true, type:'varchar' , length:255})
-    title: String;
+    title: string;
 
     @Column({ nullable: true, type:'varchar' , length:255})
-    first_name: String;
+    first_name: string;
 
     @Column({ nullable: true, type:'varchar' , length:255})
-    last_name: String;
+    last_name: string;
 
     @Column({ type:'varchar' , length:255})
-    email: String;
+    email: string;
 
     @Column({ type:'varchar' , length:255})
-    password: String;
+    password: string;
 
     @Column({ nullable: true,type:'varchar' , length:255})
-    phone: String;
+    phone: string;
 
     @Column({ nullable: true,type:'int4' })
-    transactions: String;
+    transactions: string;
 
     @Column({ type:'varchar' , length:255, default: 'ap' })
-    tier: String;
+    tier: string;
 
     //@Column({ type:'varchar' , length:255, default: 'ap' })
     @UpdateDateColumn({ type: 'timestamp without time zone', name: 'last_seen', default: () => 'LOCALTIMESTAMP' })
-    last_seen: String;
+    last_seen: Date;
 
     @CreateDateColumn({ type: 'timestamp without time zone', name: 'inserted_at', default: () => 'LOCALTIMESTAMP' })
-    inserted_at: String;
+    inserted_at: Date;
 
     @UpdateDateColumn({ type: 'timestamp without time zone', name: 'updated_at', default: () => 'LOCALTIMESTAMP' })
-    updated_at: String;
+    updated_at: Date;
 
     @Column({ type:'varchar' , length:255, default: 'password' })
-    provider: String;
+    provider: string;
 
     @Column({ type:'jsonb' , default: '{}' })
-    recent_viewed: String;
+    recent_viewed: Object;
 
     @Column({ type:'jsonb' , default: '{}' })
-    favourites: String;
+    favourites: Object;
 
     @Column({ type:'jsonb' , default: '{}' })
-    products_saved_for_later: String;
+    products_saved_for_later: Object;
 
     @Column({type:'bool', default: 'false'})
     is_alliance:boolean;
 
 
     @Column({ nullable: true, type:'varchar' , length:255})
-    alliance_id: String;
+    alliance_id: string;
 
     @Column({ nullable: true, type:'varchar' , length:255})
     oauth_id: string;
@@ -71,10 +71,10 @@ export class UserEntity{
     phone_country_code: string;
 
     @Column({ nullable: true,type:'int4' })
-    city_id: String;
+    city_id: string;
 
     @Column({ nullable: true,type:'int4' })
-    country_id: String;
+    country_id: string;
 
     @Column({ nullable: true,type:'bool' })
     news_letter_subscribed: boolean;
@@ -83,6 +83,6 @@ export class UserEntity{
     vat_number: boolean;
 
     @Column({ nullable: true,type:'timestamp without time zone' })
-    vat_registration_date: String;
+    vat_registration_date: string;
 
 }
