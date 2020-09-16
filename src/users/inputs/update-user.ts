@@ -4,7 +4,7 @@ import { IsEmail, IsNotEmpty, MinLength } from "class-validator";
 
 @InputType()
 //@ArgsType()
-export class InputUser{
+export class UpdateInputUser{
 
     @Field({ nullable: true})
      title:string;
@@ -15,13 +15,13 @@ export class InputUser{
     @Field({ nullable: true})
      last_name: string;
 
-    @Field()
+    /* @Field()
     @IsNotEmpty()
     @IsEmail()
-     email: string;
+    readonly email: string; */
 
     @Field()
-    @IsNotEmpty()
+    //@IsNotEmpty()
     @MinLength(8)
      password: string;
 

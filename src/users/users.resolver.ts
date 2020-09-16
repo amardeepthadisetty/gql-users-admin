@@ -1,6 +1,7 @@
 import { Args, Mutation, Resolver, Query } from '@nestjs/graphql';
 import { UserEntity } from './entities/users.entity';
 import { InputUser } from './inputs/input-user';
+import { UpdateInputUser } from './inputs/update-user';
 import { UsersService } from './users.service';
 
 @Resolver((of) => UserEntity)
@@ -8,7 +9,7 @@ export class UsersResolver {
     constructor(private userService: UsersService){}
 
     @Query( () => [UserEntity])
-    async users(){
+    async getUserByEmailAndPassword(){
         return '';
     }
 
@@ -21,7 +22,9 @@ export class UsersResolver {
     }
 
     @Mutation(() => UserEntity)
-    async updateUser(){
-
+    async updateUser(@Args('email') email: string, @Args('updateData') updateFields : UpdateInputUser){
+        //console.log('email is: ', email);
+        //console.log('update fields are: ', updateFields);
+        return this.userService.updateUserFieldsBasedOnEmail(email, updateFields);
     }
 }

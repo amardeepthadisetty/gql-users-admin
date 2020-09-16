@@ -26,12 +26,12 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Query {
-  users: [UserEntity!]!
+  getUserByEmailAndPassword: [UserEntity!]!
 }
 
 type Mutation {
   createUser(data: InputUser!): UserEntity!
-  updateUser: UserEntity!
+  updateUser(updateData: UpdateInputUser!, email: String!): UserEntity!
 }
 
 input InputUser {
@@ -39,6 +39,14 @@ input InputUser {
   first_name: String
   last_name: String
   email: String!
+  password: String!
+  phone: String
+}
+
+input UpdateInputUser {
+  title: String
+  first_name: String
+  last_name: String
   password: String!
   phone: String
 }
