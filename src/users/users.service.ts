@@ -10,6 +10,17 @@ import { getUserByEmailnPasswordInput } from './inputs/input-getUserByEmailAndPa
 export class UsersService {
     constructor(@InjectRepository(UserEntity) private readonly usersRepository : Repository<UserEntity>){}
 
+    async getAllUsers():Promise<UserEntity[]> {
+        return await this.usersRepository.find();
+    }
+
+    async deleteUser(id:number){
+        const user = await this.usersRepository.findOne({id:id});
+        if (!user) throw new NotFoundException(`The record with ${id} does not exists`);
+        await this.usersRepository.remove(user);
+        return true;
+    }
+
     async getUserDataByEmail(data: getUserByEmailnPasswordInput){
 
         const emailExists = await this.usersRepository.findOne({ email: data.email});

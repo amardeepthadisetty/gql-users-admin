@@ -9,6 +9,11 @@ import { UsersService } from './users.service';
 export class UsersResolver {
     constructor(private userService: UsersService){}
 
+    @Query( () => [UserEntity])
+    async getAllUsers(): Promise<UserEntity[]>{
+        return this.userService.getAllUsers();
+    }
+
     @Query( () => UserEntity)
     async getUserByEmailAndPassword(@Args('data') data : getUserByEmailnPasswordInput){
         return this.userService.getUserDataByEmail(data);
@@ -28,5 +33,10 @@ export class UsersResolver {
     @Args('updateData') updateFields : UpdateInputUser
     ){
         return this.userService.updateUserFieldsBasedOnEmail(email, updateFields);
+    }
+
+    @Mutation(() => Boolean)
+    async deleteUser(@Args("id") id: number) {
+        return this.userService.deleteUser(id);
     }
 }

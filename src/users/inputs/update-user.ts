@@ -20,7 +20,7 @@ export class UpdateInputUser{
     @IsEmail()
     readonly email: string; */
 
-    @Field()
+    @Field({nullable:true})
     //@IsNotEmpty()
     @MinLength(8)
      password: string;

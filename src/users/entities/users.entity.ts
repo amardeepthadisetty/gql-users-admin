@@ -29,6 +29,8 @@ export class UserEntity{
     last_name: string;
 
     @Field()
+    //@Column({unique: true})
+    //email: string;
     @Column({ type:'varchar' , length:255})
     email: string;
 
