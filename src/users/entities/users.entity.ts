@@ -8,7 +8,7 @@ export class UserEntity{
     @PrimaryGeneratedColumn({type: 'bigint'})
     id: number;
 
-    @Field()
+    @Field({ nullable: true})
     @Column({ nullable: true, type:'varchar' , length:255})
     client_id: string;
 
@@ -16,15 +16,15 @@ export class UserEntity{
     @Column({type:'bool', default:'false'})
     active:boolean;
 
-    @Field()
+    @Field({ nullable: true})
     @Column({ nullable: true, type:'varchar' , length:255})
     title: string;
 
-    @Field()
+    @Field({ nullable: true})
     @Column({ nullable: true, type:'varchar' , length:255})
     first_name: string;
 
-    @Field()
+    @Field({ nullable: true})
     @Column({ nullable: true, type:'varchar' , length:255})
     last_name: string;
 
@@ -35,7 +35,7 @@ export class UserEntity{
     @Column({ type:'varchar' , length:255})
     password: string;
 
-    @Field()
+    @Field({ nullable: true})
     @Column({ nullable: true,type:'varchar' , length:255})
     phone: string;
 
@@ -85,18 +85,18 @@ export class UserEntity{
     @Column({ nullable: true, type:'varchar' , length:11})
     phone_country_code: string;
 
-    @Field()
+    @Field({ nullable: true})
     @Column({ nullable: true,type:'int4' })
     city_id: string;
 
-    @Field()
+    @Field({ nullable: true})
     @Column({ nullable: true,type:'int4' })
     country_id: string;
 
     @Column({ nullable: true,type:'bool' })
     news_letter_subscribed: boolean;
 
-    @Field()
+    @Field({ nullable: true})
     @Column({ nullable: true,type:'varchar', length: 255 })
     vat_number: boolean;
 
