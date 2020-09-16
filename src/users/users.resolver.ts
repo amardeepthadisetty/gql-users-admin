@@ -1,5 +1,6 @@
 import { Args, Mutation, Resolver, Query } from '@nestjs/graphql';
 import { UserEntity } from './entities/users.entity';
+import { getUserByEmailnPasswordInput } from './inputs/input-getUserByEmailAndPassword';
 import { InputUser } from './inputs/input-user';
 import { UpdateInputUser } from './inputs/update-user';
 import { UsersService } from './users.service';
@@ -8,9 +9,9 @@ import { UsersService } from './users.service';
 export class UsersResolver {
     constructor(private userService: UsersService){}
 
-    @Query( () => [UserEntity])
-    async getUserByEmailAndPassword(){
-        return '';
+    @Query( () => UserEntity)
+    async getUserByEmailAndPassword(@Args('data') data : getUserByEmailnPasswordInput){
+        return this.userService.getUserDataByEmail(data);
     }
 
     @Mutation(() => UserEntity )

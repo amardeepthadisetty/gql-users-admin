@@ -1,13 +1,32 @@
-import { Injectable, NotAcceptableException } from '@nestjs/common';
+import { Injectable, NotAcceptableException, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserEntity } from './entities/users.entity';
 import { InputUser } from './inputs/input-user';
 import * as bcrypt  from 'bcrypt';
 import { UpdateInputUser } from './inputs/update-user';
+import { getUserByEmailnPasswordInput } from './inputs/input-getUserByEmailAndPassword';
 @Injectable()
 export class UsersService {
     constructor(@InjectRepository(UserEntity) private readonly usersRepository : Repository<UserEntity>){}
+
+    async getUserDataByEmail(data: getUserByEmailnPasswordInput){
+
+        const emailExists = await this.usersRepository.findOne({ email: data.email});
+        if( !emailExists ){
+            throw new NotFoundException('This Email address it not with us. Please cross check once! ');
+            //return '';
+        }
+
+        const isMatch = await bcrypt.compare(data.password, emailExists.password );
+
+        if (!isMatch) {
+          throw new UnauthorizedException('The password seems to be incorrect. Please provide a valid one');
+        }
+
+        return emailExists;
+
+    }
 
     async createNewUser(data: InputUser){
 
