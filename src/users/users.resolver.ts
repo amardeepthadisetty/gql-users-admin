@@ -19,4 +19,9 @@ export class UsersResolver {
         return this.userService.createNewUser(data);
 
     }
+
+    @Mutation(() => UserEntity)
+    async updateUser(){
+
+    }
 }

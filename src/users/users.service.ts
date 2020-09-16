@@ -35,18 +35,12 @@ export class UsersService {
     }
 
     async checkIfEmailExists(email:string){
-        //try {
             const emailExists = await this.usersRepository.findOne({ email: email});
-            console.log(" Email exists is: ", emailExists );
             if( emailExists ){
                 throw new NotAcceptableException('Email Id Already exists. Please use a different one!');
                 //return '';
             }
 
             return emailExists;
-            
-        //} catch (error) {
-          //  console.log("catch error in checkIfEmailExists", error);
-        //}
     }
 }
