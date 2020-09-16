@@ -22,9 +22,10 @@ export class UsersResolver {
     }
 
     @Mutation(() => UserEntity)
-    async updateUser(@Args('email') email: string, @Args('updateData') updateFields : UpdateInputUser){
-        //console.log('email is: ', email);
-        //console.log('update fields are: ', updateFields);
+    async updateUser(
+    @Args('email') email: string,
+    @Args('updateData') updateFields : UpdateInputUser
+    ){
         return this.userService.updateUserFieldsBasedOnEmail(email, updateFields);
     }
 }
