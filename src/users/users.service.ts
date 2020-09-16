@@ -15,8 +15,6 @@ export class UsersService {
         if ( !emailNew ){
             // email doesn't exists
             //now push the object into table
-            
-
             const user = new UserEntity();
 
             user.title = data.title;

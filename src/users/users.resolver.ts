@@ -1,18 +1,18 @@
 import { Args, Mutation, Resolver, Query } from '@nestjs/graphql';
-import { CreateUsersDTO } from './dto/create-users.dto';
+import { UserEntity } from './entities/users.entity';
 import { InputUser } from './inputs/input-user';
 import { UsersService } from './users.service';
 
-@Resolver((of) => CreateUsersDTO)
+@Resolver((of) => UserEntity)
 export class UsersResolver {
     constructor(private userService: UsersService){}
 
-    @Query( () => [CreateUsersDTO])
+    @Query( () => [UserEntity])
     async users(){
         return '';
     }
 
-    @Mutation(() => CreateUsersDTO )
+    @Mutation(() => UserEntity )
     async createUser(@Args('data') data: InputUser){
 
         console.log("user data is: ", data);
