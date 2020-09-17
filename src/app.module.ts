@@ -9,7 +9,9 @@ import { UsersModule } from './users/users.module';
   imports: [
     TypeOrmModule.forRoot(),
     GraphQLModule.forRoot({
-      autoSchemaFile: 'schema.gpl',
+      //autoSchemaFile: 'schema.gpl',
+      autoSchemaFile: true,
+      path: '/api/users'
     }),
     UsersModule,
 
