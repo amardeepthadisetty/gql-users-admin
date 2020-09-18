@@ -4,7 +4,7 @@ import { Any, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDa
 import { AdminPermission } from '../dto/adminPermissions.dto';
 ​
 @ObjectType()
-@Entity()
+@Entity('admins')
 export class AdminEntity {
   @PrimaryGeneratedColumn()
   @Field(() => Int)

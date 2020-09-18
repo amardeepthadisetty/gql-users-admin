@@ -1,6 +1,6 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { AdminService } from './admin.service';
-import { AdminEntity } from './entities/admin-entity';
+import { AdminEntity } from './entities/admin-entity.entity';
 import { AdminsCreateInput } from './inputs/admin.input';
 import { AdminsUpdateInput } from './inputs/admin.Update.input';
 

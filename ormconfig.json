@@ -4,8 +4,8 @@
     "port": 5432,
     "username": "postgres",
     "password": "postgres",
-    "database": "taskmanagement",
+    "database": "live_db",
     "entities": ["dist/**/*.entity.js"],
-    "synchronize": true,
+    "synchronize": false,
     "logging": true
 }

@@ -1,7 +1,7 @@
 import { Injectable, NotAcceptableException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { AdminEntity } from './entities/admin-entity';
+import { AdminEntity } from './entities/admin-entity.entity';
 import { AdminsCreateInput } from './inputs/admin.input';
 import { AdminsUpdateInput } from './inputs/admin.Update.input';
 
@@ -54,7 +54,7 @@ export class AdminService {
 
     if (!admin)
       throw new NotFoundException(
-        `Admin doesn\'t exist with the given criteria [${filter}]`,
+        `Admin doesn\'t exist with the given criteria ${filter.email}`,
       );
 
     return admin;
