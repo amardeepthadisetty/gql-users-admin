@@ -3,7 +3,7 @@ import { Field, ObjectType } from "@nestjs/graphql";
 
 @Entity('admins')
 @ObjectType()
-export class AdminEntity{
+export class AdminEntityy{
     @Field()
     @PrimaryGeneratedColumn({type: 'bigint'})
     id: number;
