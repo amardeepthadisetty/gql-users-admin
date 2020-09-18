@@ -1,6 +1,5 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Field, ObjectType } from "@nestjs/graphql";
-import { GraphQLObjectType } from "graphql";
 import { UserProductsDTO } from "../dto/user.products.dto";
 
 @Entity('users')
