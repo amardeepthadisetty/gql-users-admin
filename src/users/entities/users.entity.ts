@@ -1,5 +1,7 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Field, ObjectType } from "@nestjs/graphql";
+import { GraphQLObjectType } from "graphql";
+import { UserProductsDTO } from "../dto/user.products.dto";
 
 @Entity('users')
 @ObjectType()
@@ -57,43 +59,49 @@ export class UserEntity{
     inserted_at: Date;
 
     @Field()
-    @UpdateDateColumn({ type: 'timestamp without time zone', name: 'updated_at', default: () => 'LOCALTIMESTAMP' })
+    @UpdateDateColumn({ type: 'timestamp without time zone', name: 'updated_at', default: () => 'LOCALTIMESTAMP', onUpdate : 'LOCALTIMESTAMP' })
     updated_at: Date;
 
     @Column({ type:'varchar' , length:255, default: 'password' })
     provider: string;
 
-    @Field()
-    @Column({ type:'jsonb' , default: '{}' })
-    recent_viewed: string;
+    @Field(() => [UserProductsDTO])
+    //@Field()
+    @Column({ type:'jsonb' ,nullable:true, default:()=> "'[]'" })
+    recent_viewed: UserProductsDTO[];
+   // recent_viewed: Object;
 
-    @Column({ type:'jsonb' , default: '{}' })
-    favourites: Object;
+    @Field(() => [UserProductsDTO])
+    @Column({ type:'jsonb' ,nullable:true, default:()=> "'[]'" })
+    favourites: UserProductsDTO[];
 
-    @Field()
-    @Column({ type:'jsonb' , default: '{}' })
-    products_saved_for_later: string;
+    @Field(() => [UserProductsDTO])
+    @Column({ type:'jsonb' ,nullable:true, array:true, default:()=> "'[]'" })
+    products_saved_for_later: Array<UserProductsDTO> ;
 
+    @Field({ nullable: true})
     @Column({type:'bool', default: 'false'})
     is_alliance:boolean;
 
-
+    @Field({ nullable: true})
     @Column({ nullable: true, type:'varchar' , length:255})
     alliance_id: string;
 
+    @Field({ nullable: true})
     @Column({ nullable: true, type:'varchar' , length:255})
     oauth_id: string;
 
+    @Field({ nullable: true})
     @Column({ nullable: true, type:'varchar' , length:11})
     phone_country_code: string;
 
     @Field({ nullable: true})
     @Column({ nullable: true,type:'int4' })
-    city_id: string;
+    city_id: number;
 
     @Field({ nullable: true})
     @Column({ nullable: true,type:'int4' })
-    country_id: string;
+    country_id: number;
 
     @Column({ nullable: true,type:'bool' })
     news_letter_subscribed: boolean;
@@ -106,3 +114,4 @@ export class UserEntity{
     vat_registration_date: string;
 
 }
+

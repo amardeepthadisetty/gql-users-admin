@@ -48,10 +48,15 @@ export class UsersService {
             //now push the object into table
             const user = new UserEntity();
 
-            user.title = data.title;
+            /* user.title = data.title;
             user.first_name = data.first_name;
             user.last_name = data.last_name;
             user.email = data.email;
+            user.tier = data.tier; */
+
+            
+
+            Object.assign(user, data);
 
 
             const salt = await bcrypt.genSalt(10);
@@ -77,19 +82,29 @@ export class UsersService {
 
     async updateUserFieldsBasedOnEmail(email: string, updateFields : UpdateInputUser){
         const emailExists = await this.usersRepository.findOne({ email: email});
-
-        const salt = await bcrypt.genSalt(10);
-
-        updateFields.password = await bcrypt.hash( updateFields.password, salt);
+        console.log("update fields are ", updateFields);
+        if( updateFields.password){
+            const salt = await bcrypt.genSalt(10);
+        
+            updateFields.password = await bcrypt.hash( updateFields.password, salt);
+        }
+        
 
         if( !emailExists ){
             throw new NotAcceptableException('The Email Id you provided is not with us! Please cross check it!');
             //return '';
         }
-
-        Object.assign(emailExists, updateFields);
-
-        await this.usersRepository.save(emailExists);
+        //{"{\"id\": 20, \"type\": \"product\"}"}
+        //\"[{\"id\":2,\"type\":\"product 2\"}]\""
+        //updateFields.products_saved_for_later = {{ "id":2, type: "product" }}
+        //console.log(" products saved for later is: ",updateFields.products_saved_for_later);
+        //updateFields.products_saved_for_later = JSON.stringify(updateFields.products_saved_for_later);
+        let data:any = Object.assign(emailExists, updateFields);
+        //email:anyExists.products_saved_for_later = JSON.stringify('{{ id: 2, type: "product 2"}}');
+        //JSON.parse(emailExists.products_saved_for_later);
+        console.log(" emails exists productsaved object is: ", data.products_saved_for_later);
+        // data.products_saved_for_later = '[{1, "product"}]'
+        await this.usersRepository.save(data);
 
         return emailExists;
 
