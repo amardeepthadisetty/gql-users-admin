@@ -102,7 +102,7 @@ export class UsersService {
         let data:any = Object.assign(emailExists, updateFields);
         //email:anyExists.products_saved_for_later = JSON.stringify('{{ id: 2, type: "product 2"}}');
         //JSON.parse(emailExists.products_saved_for_later);
-        console.log(" emails exists productsaved object is: ", data.products_saved_for_later);
+        console.log(" recent_viewed: ", data.recent_viewed);
         // data.products_saved_for_later = '[{1, "product"}]'
         await this.usersRepository.save(data);
 

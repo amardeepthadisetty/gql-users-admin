@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { AdminEntity } from './entities/admin-entity.entity';
 import { AdminsCreateInput } from './inputs/admin.input';
 import { AdminsUpdateInput } from './inputs/admin.Update.input';
+import * as bcrypt  from 'bcrypt';
 
 @Injectable()
 export class AdminService {
@@ -22,6 +23,9 @@ export class AdminService {
     if ( !emailNew ){
       const newAdmin = new AdminEntity();
       Object.assign(newAdmin, admin);
+      const salt = await bcrypt.genSalt(10);
+
+      newAdmin.password = await bcrypt.hash( newAdmin.password, salt);
 
       return await this.adminRepo.save(newAdmin);
     }
@@ -43,6 +47,12 @@ export class AdminService {
     admin: AdminsUpdateInput,
   ): Promise<AdminEntity> {
     const ad = await this.findAdmin({ email });
+
+    if( admin.password){
+      const salt = await bcrypt.genSalt(10);
+  
+      admin.password = await bcrypt.hash( admin.password, salt);
+    }
 
     Object.assign(ad, admin);
 
