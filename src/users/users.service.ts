@@ -1,6 +1,6 @@
 import { Injectable, NotAcceptableException, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { getConnection, Repository } from 'typeorm';
 import { UserEntity } from './entities/users.entity';
 import { InputUser } from './inputs/input-user';
 import * as bcrypt  from 'bcrypt';
@@ -106,20 +106,24 @@ export class UsersService {
         console.log(" recent_viewed: ", data.recent_viewed);
         //const obj = {...data.recent_viewed}; 
         //console.log(" object inside object is: ", {obj});
-        data.recent_viewed = JSON.stringify(data.recent_viewed);
+       /*  data.recent_viewed = JSON.stringify(data.recent_viewed);
         data.recent_viewed = data.recent_viewed.replace('[','{"');
         data.recent_viewed = data.recent_viewed.replace(']','"}');
         data.recent_viewed = data.recent_viewed.replace('},','}",');
-        data.recent_viewed = data.recent_viewed.replace(',{',',"{');
+        data.recent_viewed = data.recent_viewed.replace(',{',',"{'); */
 
         console.log("stringify recent_viewed: ", data.recent_viewed);
         //data.recent_viewed = JSON.parse(data.recent_viewed);
         //console.log("parse recent_viewed: ", data.recent_viewed);
         //console.log(" recent_viewed after assign is: : ", data.recent_viewed);
-        // data.products_saved_for_later = '[{1, "product"}]'
-        await this.usersRepository.save(data);
-
-        return emailExists;
+       // data.recent_viewed = '{"{\\"id\\":26,\\"type\\":\\"product 24\\"}","{\\"id\\":26,\\"type\\":\\"product 26\\"}"}';
+        return await this.usersRepository.save(emailExists);
+        //const qry = `UPDATE users SET  recent_viewed = '{"{\\"id\\":24,\\"type\\":\\"product 24\\"}","{\\"id\\":25,\\"type\\":\\"product 25\\"}"}'   WHERE id IN ('11885')`;
+        //const rawData = await this.usersRepository.query(qry);
+        //const emailExistss = await this.usersRepository.findOne({ email: email});
+        //console.log("raw data is: ", rawData);
+        //return emailExists;
+        //return rawData;
 
 
     }
