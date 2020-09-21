@@ -102,7 +102,20 @@ export class UsersService {
         let data:any = Object.assign(emailExists, updateFields);
         //email:anyExists.products_saved_for_later = JSON.stringify('{{ id: 2, type: "product 2"}}');
         //JSON.parse(emailExists.products_saved_for_later);
+
         console.log(" recent_viewed: ", data.recent_viewed);
+        //const obj = {...data.recent_viewed}; 
+        //console.log(" object inside object is: ", {obj});
+        data.recent_viewed = JSON.stringify(data.recent_viewed);
+        data.recent_viewed = data.recent_viewed.replace('[','{"');
+        data.recent_viewed = data.recent_viewed.replace(']','"}');
+        data.recent_viewed = data.recent_viewed.replace('},','}",');
+        data.recent_viewed = data.recent_viewed.replace(',{',',"{');
+
+        console.log("stringify recent_viewed: ", data.recent_viewed);
+        //data.recent_viewed = JSON.parse(data.recent_viewed);
+        //console.log("parse recent_viewed: ", data.recent_viewed);
+        //console.log(" recent_viewed after assign is: : ", data.recent_viewed);
         // data.products_saved_for_later = '[{1, "product"}]'
         await this.usersRepository.save(data);
 
