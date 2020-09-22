@@ -64,7 +64,7 @@ export class UserEntity{
     @Column({ type:'varchar' , length:255, default: 'password' })
     provider: string;
 
-    @Field(() => [UserProductsDTO])
+    @Field(() => [UserProductsDTO], {nullable:true})
     //@Field()
     @Column({ type:'jsonb' ,nullable:true, default:()=> "'[]'" })
     recent_viewed: UserProductsDTO[];
