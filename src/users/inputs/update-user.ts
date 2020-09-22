@@ -1,5 +1,5 @@
 import { ArgsType, Field, InputType } from "@nestjs/graphql";
-import { IsDefined, IsEmail, IsNotEmpty, MinLength, ValidateIf, ValidationArguments } from "class-validator";
+import { IsDefined, IsEmail, IsNotEmpty, IsOptional, MinLength, ValidateIf, ValidationArguments } from "class-validator";
 import { UserProductsInputDTO } from "../dto/user-productsInput.dto";
 import { ProductsSavedForLater } from "../entities/users.entity";
 
@@ -24,9 +24,9 @@ export class UpdateInputUser{
 
     
     @Field({nullable:true})
-    //@IsNotEmpty()
-    @ValidateIf(o => o.password != "")
-    //@MinLength(8)
+    @IsOptional()
+    //@ValidateIf(o => o.password != "")
+    @MinLength(8)
     password: string;
 
     @Field({ nullable: true})
