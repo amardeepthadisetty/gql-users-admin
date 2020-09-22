@@ -82,7 +82,6 @@ export class UsersService {
 
     async updateUserFieldsBasedOnEmail(email: string, updateFields : UpdateInputUser){
         const emailExists = await this.usersRepository.findOne({ email: email});
-        console.log("update fields are ", updateFields);
         if( updateFields.password){
             const salt = await bcrypt.genSalt(10);
         
@@ -103,7 +102,7 @@ export class UsersService {
         //email:anyExists.products_saved_for_later = JSON.stringify('{{ id: 2, type: "product 2"}}');
         //JSON.parse(emailExists.products_saved_for_later);
 
-        console.log(" recent_viewed: ", data.recent_viewed);
+        //console.log(" recent_viewed: ", data.recent_viewed);
         //const obj = {...data.recent_viewed}; 
         //console.log(" object inside object is: ", {obj});
        /*  data.recent_viewed = JSON.stringify(data.recent_viewed);
@@ -112,7 +111,7 @@ export class UsersService {
         data.recent_viewed = data.recent_viewed.replace('},','}",');
         data.recent_viewed = data.recent_viewed.replace(',{',',"{'); */
 
-        console.log("stringify recent_viewed: ", data.recent_viewed);
+        //console.log("stringify recent_viewed: ", data.recent_viewed);
         //data.recent_viewed = JSON.parse(data.recent_viewed);
         //console.log("parse recent_viewed: ", data.recent_viewed);
         //console.log(" recent_viewed after assign is: : ", data.recent_viewed);

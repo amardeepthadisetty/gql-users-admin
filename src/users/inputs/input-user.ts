@@ -1,6 +1,7 @@
 import { ArgsType, Field, InputType } from "@nestjs/graphql";
 import { IsEmail, IsNotEmpty, MinLength } from "class-validator";
 import { UserProductsInputDTO } from "../dto/user-productsInput.dto";
+import { ProductsSavedForLater } from "../entities/users.entity";
 //import { UserProductsDTO } from "../dto/user.products.dto";
 
 
@@ -47,14 +48,14 @@ export class InputUser{
     @Field({nullable:true})
     provider?:string;
 
-//     @Field( () => [UserProductsInputDTO],{nullable:true})
-//     recent_viewed:UserProductsInputDTO[];
-// ​
-//      @Field( () => [UserProductsInputDTO],{nullable:true})
-//     favourites?:UserProductsInputDTO[];
-// ​
-//     @Field( () => [UserProductsInputDTO],{nullable:true})
-//     products_saved_for_later?:UserProductsInputDTO[];  
+    @Field( () => [UserProductsInputDTO],{nullable:true})
+    recent_viewed:UserProductsInputDTO[];
+​
+     @Field( () => [UserProductsInputDTO],{nullable:true})
+    favourites?:UserProductsInputDTO[];
+​
+    @Field( () => [ProductsSavedForLater],{nullable:true})
+    products_saved_for_later?:ProductsSavedForLater[];  
 
     @Field( {defaultValue:new Date() })
     inserted_at?:Date; 

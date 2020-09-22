@@ -1,5 +1,5 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-import { Field, ObjectType } from "@nestjs/graphql";
+import { Field, GraphQLISODateTime, InputType, Int, ObjectType } from "@nestjs/graphql";
 import { UserProductsDTO } from "../dto/user.products.dto";
 
 @Entity('users')
@@ -57,7 +57,7 @@ export class UserEntity{
     @CreateDateColumn({ type: 'timestamp without time zone', name: 'inserted_at', default: () => 'LOCALTIMESTAMP' })
     inserted_at: Date;
 
-    @Field()
+    @Field(type => GraphQLISODateTime)
     @UpdateDateColumn({ type: 'timestamp without time zone', name: 'updated_at', default: () => 'LOCALTIMESTAMP', onUpdate : 'LOCALTIMESTAMP' })
     updated_at: Date;
 
@@ -74,9 +74,9 @@ export class UserEntity{
     @Column({ type:'jsonb' ,nullable:true, default:()=> "'[]'" })
     favourites: UserProductsDTO[];
 
-    @Field(() => [UserProductsDTO])
+    @Field(() => [ProductsSavedForLater])
     @Column({ type:'jsonb' ,nullable:true, array:true, default:()=> "'[]'" })
-    products_saved_for_later: Array<UserProductsDTO> ;
+    products_saved_for_later: Array<ProductsSavedForLater> ;
 
     @Field({ nullable: true})
     @Column({type:'bool', default: 'false'})
@@ -112,5 +112,21 @@ export class UserEntity{
     @Column({ nullable: true,type:'timestamp without time zone' })
     vat_registration_date: string;
 
+}
+
+@ObjectType()
+@InputType('ProductsSavedForLaterInput')
+export class ProductsSavedForLater {
+  @Field(type => Int)
+  product_id: number;
+
+  @Field(type => Int)
+  size_id: number;
+
+  @Field(type => Int)
+  color_id: number;
+
+  @Field(type => Int)
+  amount: number;
 }
 
