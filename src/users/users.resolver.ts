@@ -22,7 +22,7 @@ export class UsersResolver {
     @Mutation(() => UserEntity )
     async createUser(@Args('data') data: InputUser){
 
-        console.log("user data is: ", data);
+        //console.log("user data is: ", data);
         return this.userService.createNewUser(data);
 
     }
