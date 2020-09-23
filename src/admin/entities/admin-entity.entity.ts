@@ -50,7 +50,8 @@ export class AdminEntity {
   @Field(() => AdminPermission)
   permissions: AdminPermission;
 ​
-  @Column({ type: 'int4range' })
-  @Field(() => [Int])
-  cities_area_ids: any;
+  @Field(() => [Number])
+  @Column({ type: 'int', array:true })
+  cities_area_ids: number[];
+  
 }

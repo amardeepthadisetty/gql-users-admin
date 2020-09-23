@@ -25,11 +25,11 @@ export class AdminsCreateInput {
   @MinLength(8)
   password: string;
 
-  @Field({ nullable: true})
+  @Field({ nullable: true, defaultValue:() => 'NOW()'})
   //@IsNotEmpty()
   inserted_at: Date;
 
-  @Field({ nullable:true})
+  @Field({ nullable:true,  defaultValue:() => 'NOW()'})
   //@IsNotEmpty()
   updated_at: Date;
 
@@ -42,7 +42,9 @@ export class AdminsCreateInput {
   @Field(() => AdminPermissionInput, { nullable: true })
   permissions: AdminPermissionInput;
 
-  @Field(() => [Int])
-  @IsNotEmpty()
-  cities_area_ids: any;
+  @Field(() => [Number], { nullable: true })
+  //@IsNotEmpty()
+  cities_area_ids: number[];
+
+  
 }

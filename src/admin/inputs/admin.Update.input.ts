@@ -41,7 +41,7 @@ export class AdminsUpdateInput {
   @Field(() => AdminPermissionInput, { nullable: true })
   permissions: AdminPermissionInput;
 
-  @Field(() => [Int], { nullable: true })
-  // @IsNotEmpty()
-  cities_area_ids: any;
+  @Field(() => [Number], { nullable: true })
+  //@IsNotEmpty()
+  cities_area_ids: number[];
 }
