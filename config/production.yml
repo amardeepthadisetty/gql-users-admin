@@ -1,17 +1,11 @@
 server:
-  port: 3001
+    port: 8080
 
-db: 
-  type: 'postgres'  
-  host: 'localhost'
-  port: 5432
-  username: 'postgres'
-  password: 'postgres'
-  database: 'live_db'
-  migration: true
-  synchronize: false
-
+db:
+    type: 'postgres'
+    synchronize: false
+    migration: false
+    logging: false
 
 graphql:
-  playground: false
-
+    playground: false
